@@ -1,0 +1,122 @@
+{
+    "pt-BR": {
+        "common": {
+            "logo": "Discontopop",
+            "dashboard": "Dashboard",
+            "campaigns": "Campanhas",
+            "clients": "Clientes",
+            "reports": "Relatórios",
+            "active": "Ativa",
+            "createNew": "Criar Nova"
+        },
+        "merchant": {
+            "dashboard": {
+                "activeCampaigns": "Campanhas Ativas",
+                "dailyPerformance": "Desempenho do Dia",
+                "engagedClients": "Clientes Engajados",
+                "inProgress": "Em andamento",
+                "totalValue": "Valor total",
+                "today": "Hoje",
+                "recentCampaigns": "Campanhas Recentes",
+                "createCampaign": "Criar Nova Campanha"
+            }
+        },
+        "client": {
+            "dashboard": {
+                "favoriteStores": "Lojas Favoritas",
+                "activeCoupons": "Cupons Ativos",
+                "cashback": "Cashback",
+                "sweepstakes": "Sorteios",
+                "newPromotions": "Novas promoções",
+                "exclusiveOffers": "Ofertas exclusivas",
+                "notifications": "Notificações",
+                "history": "Histórico",
+                "availableBalance": "Saldo disponível",
+                "rules": "Regras",
+                "redemption": "Resgate",
+                "participations": "Participações",
+                "results": "Resultados",
+                "prizes": "Premiações"
+            }
+        },
+        "admin": {
+            "dashboard": {
+                "platformMetrics": "Métricas da Plataforma",
+                "alerts": "Alertas",
+                "systemStatus": "Status do Sistema",
+                "activeUsers": "Usuários ativos",
+                "transactions": "Transações",
+                "businessVolume": "Volume de negócios",
+                "growth": "Crescimento",
+                "reportedIssues": "Problemas reportados",
+                "suspiciousActivities": "Atividades suspeitas",
+                "attentionNeeded": "Necessidades de atenção",
+                "necessaryUpdates": "Atualizações necessárias",
+                "performance": "Performance",
+                "availability": "Disponibilidade",
+                "security": "Segurança",
+                "backup": "Backup"
+            }
+        }
+    },
+    "en-US": {
+        "common": {
+            "logo": "Discontopop",
+            "dashboard": "Dashboard",
+            "campaigns": "Campaigns",
+            "clients": "Clients",
+            "reports": "Reports",
+            "active": "Active",
+            "createNew": "Create New"
+        },
+        "merchant": {
+            "dashboard": {
+                "activeCampaigns": "Active Campaigns",
+                "dailyPerformance": "Daily Performance",
+                "engagedClients": "Engaged Clients",
+                "inProgress": "In Progress",
+                "totalValue": "Total Value",
+                "today": "Today",
+                "recentCampaigns": "Recent Campaigns",
+                "createCampaign": "Create New Campaign"
+            }
+        },
+        "client": {
+            "dashboard": {
+                "favoriteStores": "Favorite Stores",
+                "activeCoupons": "Active Coupons",
+                "cashback": "Cashback",
+                "sweepstakes": "Sweepstakes",
+                "newPromotions": "New promotions",
+                "exclusiveOffers": "Exclusive offers",
+                "notifications": "Notifications",
+                "history": "History",
+                "availableBalance": "Available balance",
+                "rules": "Rules",
+                "redemption": "Redemption",
+                "participations": "Participations",
+                "results": "Results",
+                "prizes": "Prizes"
+            }
+        },
+        "admin": {
+            "dashboard": {
+                "platformMetrics": "Platform Metrics",
+                "alerts": "Alerts",
+                "systemStatus": "System Status",
+                "activeUsers": "Active users",
+                "transactions": "Transactions",
+                "businessVolume": "Business volume",
+                "growth": "Growth",
+                "reportedIssues": "Reported issues",
+                "suspiciousActivities": "Suspicious activities",
+                "attentionNeeded": "Attention needed",
+                "necessaryUpdates": "Necessary updates",
+                "performance": "Performance",
+                "availability": "Availability",
+                "security": "Security",
+                "backup": "Backup"
+            }
+        }
+    }
+}

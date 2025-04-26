@@ -1,162 +1,140 @@
-# Discontopop - Aplicativo de Descontos e Cashback
+# 🛍️ Discontopop - Plataforma de Descontos e Cashback
 
-## Visão Geral
-Discontopop é uma plataforma web responsiva que simula um aplicativo de descontos, cashback, cupons e sorteios. A aplicação é focada em mobile-first e oferece uma experiência similar a um aplicativo nativo.
+<div align="center">
+  <img src="public/logo.png" alt="Discontopop Logo" width="200"/>
+  
+  [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
+</div>
 
-## Arquitetura
-- **Frontend**: Next.js 14 com TypeScript
-- **Estilização**: Tailwind CSS
-- **Gerenciamento de Estado**: React Context API
-- **Formulários**: React Hook Form
-- **Validação**: Zod
-- **Testes**: Jest e React Testing Library
+## 📋 Índice
+- [Visão Geral](#-visão-geral)
+- [Documentação por Perfil](#-documentação-por-perfil)
+- [Tecnologias](#-tecnologias)
+- [Design System](#-design-system)
+- [Instalação](#-instalação)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Contribuição](#-contribuição)
+- [Licença](#-licença)
 
-## Estrutura de Diretórios
+## 🌟 Visão Geral
+Discontopop é uma plataforma web que conecta lojistas e consumidores através de descontos, cashback e promoções. A plataforma é dividida em três perfis principais: Lojista, Cliente e Administrador, cada um com suas funcionalidades específicas.
+
+### Objetivos
+- Conectar lojistas e consumidores
+- Facilitar a gestão de promoções
+- Proporcionar uma experiência de compra vantajosa
+- Oferecer ferramentas de análise e gestão
+
+## 📚 Documentação por Perfil
+
+### 🏪 [Lojista](docs/merchant/README.md)
+- Gestão de campanhas
+- Análise de desempenho
+- Gestão de clientes
+- Métricas e relatórios
+
+### 👤 [Cliente](docs/client/README.md)
+- Busca de descontos
+- Cashback
+- Cupons
+- Histórico de compras
+
+### 👨‍💼 [Administrador](docs/admin/README.md)
+- Gestão da plataforma
+- Monitoramento
+- Configurações
+- Suporte
+
+## 🛠️ Tecnologias
+- **Frontend**: 
+  - React 18 com TypeScript
+  - Vite para build e desenvolvimento
+  - CSS puro para estilização
+  - React Router para navegação
+  - Dados mockados em JSON para simulação
+
+## 🎨 Design System
+
+### Cores
+```css
+:root {
+  --primary: #FF6B6B;    /* Vermelho principal */
+  --secondary: #4ECDC4;  /* Verde água */
+  --background: #F7F7F7; /* Fundo claro */
+  --text: #2D3436;      /* Texto escuro */
+  --success: #00C853;   /* Verde sucesso */
+  --warning: #FFD600;   /* Amarelo alerta */
+  --error: #FF3D00;     /* Vermelho erro */
+}
+```
+
+### Tipografia
+- **Títulos**: Poppins (Bold, Medium, Regular)
+- **Corpo**: Inter (Regular, Medium)
+- **Tamanhos**:
+  - H1: 32px
+  - H2: 24px
+  - H3: 20px
+  - Body: 16px
+  - Small: 14px
+  - Caption: 12px
+
+## 🚀 Instalação
+
+1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/discontopop.git
+cd discontopop
+```
+
+2. Instale as dependências
+```bash
+npm install
+```
+
+3. Inicie o servidor de desenvolvimento
+```bash
+npm run dev
+```
+
+## 📁 Estrutura do Projeto
 ```
 src/
-├── app/                    # Rotas da aplicação
 ├── components/            # Componentes reutilizáveis
-├── contexts/             # Contextos do React
-├── hooks/                # Hooks personalizados
-├── lib/                  # Utilitários e configurações
-├── styles/              # Estilos globais
-└── types/               # Definições de tipos TypeScript
+│   ├── merchant/         # Componentes do lojista
+│   ├── client/          # Componentes do cliente
+│   ├── admin/           # Componentes do administrador
+│   └── shared/          # Componentes compartilhados
+├── pages/                # Páginas da aplicação
+│   ├── merchant/        # Páginas do lojista
+│   ├── client/          # Páginas do cliente
+│   └── admin/           # Páginas do administrador
+├── data/                # Dados mockados em JSON
+│   ├── merchant/        # Dados do lojista
+│   ├── client/          # Dados do cliente
+│   └── admin/           # Dados do administrador
+├── assets/              # Recursos visuais
+│   ├── illustrations/   # Ilustrações isométricas
+│   ├── icons/          # Ícones
+│   └── images/         # Imagens gerais
+├── hooks/               # Hooks personalizados
+├── styles/             # Estilos globais
+└── types/              # Definições de tipos TypeScript
 ```
 
-## Funcionalidades por Perfil
+## 🤝 Contribuição
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
-### Cliente
-1. **Home**
-   - Lista de lojas favoritas
-   - Propagandas e anúncios personalizados
-   - Cupons ativos
-   - Sorteios disponíveis
-   - Seção de cashback acumulado
+## 📄 Licença
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-2. **Explorar**
-   - Busca de lojas
-   - Filtros por categoria
-   - Mapa de lojas próximas
-   - Ofertas em destaque
+---
 
-3. **Cupons**
-   - Lista de cupons disponíveis
-   - Histórico de cupons utilizados
-   - Cupons favoritos
-   - Compartilhamento de cupons
-
-4. **Perfil**
-   - Dados pessoais
-   - Histórico de compras
-   - Configurações de notificações
-   - Preferências de lojas
-
-### Lojista
-1. **Dashboard**
-   - Visão geral de desempenho
-   - Métricas de engajamento
-   - Gráficos de conversão
-
-2. **Gerenciamento de Cupons**
-   - Criação de cupons
-   - Edição de cupons existentes
-   - Validação de cupons
-   - Relatórios de uso
-
-3. **Clientes**
-   - Lista de clientes
-   - Histórico de compras
-   - Segmentação de clientes
-   - Envio de mensagens personalizadas
-
-4. **Marketing**
-   - Criação de anúncios
-   - Push notifications
-   - Campanhas promocionais
-   - Relatórios de engajamento
-
-### Gestor do App
-1. **Dashboard Administrativo**
-   - Visão geral da plataforma
-   - Métricas de crescimento
-   - Alertas e notificações
-
-2. **Gerenciamento de Lojistas**
-   - Cadastro de lojistas
-   - Aprovação de contas
-   - Monitoramento de atividades
-   - Suporte e atendimento
-
-3. **Configurações**
-   - Políticas da plataforma
-   - Configurações gerais
-   - Gerenciamento de categorias
-   - Configurações de segurança
-
-## Fluxos Principais
-
-### Cliente
-1. **Busca e Uso de Cupons**
-   - Busca por loja/categoria
-   - Visualização de cupom
-   - Ativação do cupom
-   - Compartilhamento
-
-2. **Cashback**
-   - Acumulação automática
-   - Resgate de valores
-   - Histórico de transações
-
-3. **Sorteios**
-   - Participação
-   - Notificações de resultados
-   - Premiações
-
-### Lojista
-1. **Criação de Cupom**
-   - Definição de regras
-   - Período de validade
-   - Limites de uso
-   - Aprovação do gestor
-
-2. **Marketing**
-   - Criação de campanha
-   - Seleção de público
-   - Agendamento
-   - Monitoramento
-
-### Gestor
-1. **Aprovação de Lojista**
-   - Análise de documentos
-   - Verificação de dados
-   - Ativação da conta
-
-## Design System
-- **Cores Principais**
-  - Primária: #FF6B6B
-  - Secundária: #4ECDC4
-  - Fundo: #F7F7F7
-  - Texto: #2D3436
-
-- **Tipografia**
-  - Títulos: Poppins
-  - Corpo: Inter
-  - Tamanhos: 12px - 32px
-
-- **Componentes**
-  - Cards
-  - Botões
-  - Inputs
-  - Modais
-  - Navegação
-  - Badges
-
-## Próximos Passos
-1. [ ] Configuração inicial do projeto
-2. [ ] Implementação do design system
-3. [ ] Desenvolvimento das telas do cliente
-4. [ ] Desenvolvimento das telas do lojista
-5. [ ] Desenvolvimento das telas do gestor
-6. [ ] Implementação da autenticação
-7. [ ] Testes e otimizações
-8. [ ] Deploy e monitoramento
+<div align="center">
+  <p>Desenvolvido com ❤️ pela equipe Discontopop</p>
+</div>

@@ -402,6 +402,32 @@ function updateTotal() {
 
 // Inicialização quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function () {
+    // Menu functionality
+    const menuButton = document.getElementById('menuButton');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuContent = document.getElementById('menuContent');
+
+    if (menuButton && menuOverlay && menuContent) {
+        menuButton.addEventListener('click', () => {
+            menuOverlay.style.display = 'block';
+            menuContent.style.display = 'block';
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            menuOverlay.style.display = 'none';
+            menuContent.style.display = 'none';
+        });
+
+        // Fechar menu ao clicar em um item
+        const menuItems = document.querySelectorAll('.menu-list a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuOverlay.style.display = 'none';
+                menuContent.style.display = 'none';
+            });
+        });
+    }
+
     // Tab functionality
     const actionTabs = document.querySelectorAll('.action-tab');
     const tabContents = document.querySelectorAll('.tab-content');

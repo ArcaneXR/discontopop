@@ -44,118 +44,138 @@
                             </button>
                         </div>
                     </div>
-                    <div class="selected-client" id="selectedClient" style="display: none;">
-                        <div class="client-profile-card">
-                            <div class="client-profile-header">
-                                <span id="selectedClientName"></span>
-                                <button id="clearClient">×</button>
+                </div>
+
+                <div class="selected-client" id="selectedClient" style="display: none;">
+                    <div class="client-profile-card">
+                        <div class="client-profile-header">
+                            <span id="selectedClientName"></span>
+                            <button id="clearClient">×</button>
+                        </div>
+                        <div class="client-profile-info">
+                            <div class="client-phone" id="selectedClientPhone"></div>
+                            <div class="client-birthdate" id="selectedClientBirthdate"></div>
+                        </div>
+                    </div>
+
+                    <div class="client-status">
+                        <div class="status-item">
+                            <span class="status-label">Cupons Ativos:</span>
+                            <span class="status-value" id="activeCoupons">0/10</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Participações:</span>
+                            <span class="status-value" id="activeCampaigns">2</span>
+                        </div>
+                    </div>
+
+                    <div class="client-actions">
+                        <button class="action-tab active" data-tab="redeem">Resgatar</button>
+                        <button class="action-tab" data-tab="add">Adicionar</button>
+                    </div>
+
+                    <div class="tab-content" id="redeemTab">
+                        <div class="available-campaigns">
+                            <h4>Campanhas Disponíveis para Resgate</h4>
+                            <div class="campaigns-list" id="redeemableCampaigns">
+                                <!-- Campanhas para resgate serão adicionadas aqui -->
                             </div>
-                            <div class="client-profile-info">
-                                <div class="client-phone" id="selectedClientPhone"></div>
-                                <div class="client-points">
-                                    <div class="points-info">
-                                        <span class="points-label">Pontos:</span>
-                                        <span class="points-value" id="selectedClientPoints">0</span>
-                                        <button class="manage-points-btn" id="managePointsBtn">
-                                            <span class="material-icons">edit</span>
-                                            Gerenciar
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="client-coupons">
-                                    <span class="coupons-label">Cupons Disponíveis:</span>
-                                    <div class="coupons-list" id="selectedClientCoupons">
-                                        <!-- Cupons serão adicionados aqui -->
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="addTab" style="display: none;">
+                        <div class="available-campaigns">
+                            <h4>Campanhas Disponíveis para Adicionar</h4>
+                            <div class="campaigns-list" id="availableCampaigns">
+                                <!-- Campanhas disponíveis serão adicionadas aqui -->
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="promotion-type">
-                    <div class="promotion-option" data-type="discount">
-                        <div class="icon">%</div>
-                        <div>Desconto</div>
-                    </div>
-                    <div class="promotion-option" data-type="points">
-                        <div class="icon">★</div>
-                        <div>Pontos</div>
-                    </div>
-                </div>
-
-                <div class="campaigns-list" id="campaignsList">
-                    <!-- Campaigns will be populated here -->
-                </div>
-
-                <div class="promotion-inputs" id="discountInputs">
-                    <div class="product-options">
-                        <div class="product-option" data-type="scan">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div class="title">Escanear Produto</div>
-                            <div class="description">Use a câmera para escanear o código do produto</div>
-                        </div>
-                        <div class="product-option" data-type="manual">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 5v14M5 12h14"></path>
-                                </svg>
-                            </div>
-                            <div class="title">Adicionar Manualmente</div>
-                            <div class="description">Digite os dados do produto</div>
-                        </div>
-                    </div>
-
-                    <div class="scan-section" id="scanSection">
-                        <h4>Escanear Código do Produto</h4>
-                        <div class="scan-preview">
-                            Posicione o código na câmera
-                        </div>
-                        <button class="scan-button">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18"></path>
-                            </svg>
-                            Iniciar Escaneamento
-                        </button>
-                    </div>
-
-                    <div class="manual-input" id="manualInput">
-                        <div class="product-fields">
-                            <div class="form-group">
-                                <label for="productName">Nome do Produto</label>
-                                <input type="text" id="productName" placeholder="Digite o nome do produto">
-                            </div>
-                            <div class="form-group">
-                                <label for="productCode">Código do Produto</label>
-                                <input type="text" id="productCode" placeholder="Digite o código do produto">
-                            </div>
-                            <div class="form-group">
-                                <label for="productPrice">Preço (R$)</label>
-                                <input type="number" id="productPrice" step="0.01" min="0" placeholder="0,00">
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" style="margin-top: 15px;">Adicionar Produto</button>
-                    </div>
-
-                    <div class="product-list" id="productList">
-                        <!-- Products will be added here -->
-                    </div>
-                </div>
-
-                <div class="promotion-inputs" id="pointsInputs">
-                    <div class="points-info">
-                        <div>Pontos Atuais</div>
-                        <div class="current-points" id="currentPoints">0</div>
-                    </div>
-                </div>
-
-                <button class="btn btn-primary" id="registerSale">Registrar Venda</button>
             </div>
+
+            <div class="promotion-type">
+                <div class="promotion-option" data-type="discount">
+                    <div class="icon">%</div>
+                    <div>Desconto</div>
+                </div>
+                <div class="promotion-option" data-type="points">
+                    <div class="icon">★</div>
+                    <div>Pontos</div>
+                </div>
+            </div>
+
+            <div class="campaigns-list" id="campaignsList">
+                <!-- Campaigns will be populated here -->
+            </div>
+
+            <div class="promotion-inputs" id="discountInputs">
+                <div class="product-options">
+                    <div class="product-option" data-type="scan">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="title">Escanear Produto</div>
+                        <div class="description">Use a câmera para escanear o código do produto</div>
+                    </div>
+                    <div class="product-option" data-type="manual">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"></path>
+                            </svg>
+                        </div>
+                        <div class="title">Adicionar Manualmente</div>
+                        <div class="description">Digite os dados do produto</div>
+                    </div>
+                </div>
+
+                <div class="scan-section" id="scanSection">
+                    <h4>Escanear Código do Produto</h4>
+                    <div class="scan-preview">
+                        Posicione o código na câmera
+                    </div>
+                    <button class="scan-button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18"></path>
+                        </svg>
+                        Iniciar Escaneamento
+                    </button>
+                </div>
+
+                <div class="manual-input" id="manualInput">
+                    <div class="product-fields">
+                        <div class="form-group">
+                            <label for="productName">Nome do Produto</label>
+                            <input type="text" id="productName" placeholder="Digite o nome do produto">
+                        </div>
+                        <div class="form-group">
+                            <label for="productCode">Código do Produto</label>
+                            <input type="text" id="productCode" placeholder="Digite o código do produto">
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Preço (R$)</label>
+                            <input type="number" id="productPrice" step="0.01" min="0" placeholder="0,00">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="addProductButton">Adicionar Produto</button>
+                </div>
+
+                <div class="product-list" id="productList">
+                    <!-- Products will be added here -->
+                </div>
+            </div>
+
+            <div class="promotion-inputs" id="pointsInputs">
+                <div class="points-info">
+                    <div>Pontos Atuais</div>
+                    <div class="current-points" id="currentPoints">0</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="registerSale">Registrar</button>
         </main>
     </div>
 
@@ -280,674 +300,7 @@
         </div>
     </div>
 
-    <script>
-        // Variáveis globais
-        let currentAction = null;
-        let transactionHistory = [];
-
-        // Funções auxiliares
-        function formatDate(date) {
-            return new Date(date).toLocaleDateString('pt-BR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
-
-        function showModal() {
-            document.querySelector('.modal-overlay').style.display = 'block';
-        }
-
-        function hideModal() {
-            document.querySelector('.modal-overlay').style.display = 'none';
-            resetForm();
-        }
-
-        function resetForm() {
-            document.querySelectorAll('input').forEach(input => input.value = '');
-            currentAction = null;
-            document.querySelectorAll('.action-group').forEach(group => {
-                group.style.display = 'none';
-            });
-        }
-
-        function showActionGroup(action) {
-            currentAction = action;
-            document.querySelectorAll('.action-group').forEach(group => {
-                group.style.display = 'none';
-            });
-            document.querySelector(`.${action}-group`).style.display = 'block';
-        }
-
-        function addTransaction(type, amount, reason) {
-            const transaction = {
-                id: Date.now(),
-                type,
-                amount,
-                reason,
-                date: new Date()
-            };
-            transactionHistory.unshift(transaction);
-            updateHistoryList();
-        }
-
-        function updateHistoryList() {
-            const filter = document.querySelector('#historyFilter').value;
-            const historyList = document.querySelector('.history-list');
-            const filteredHistory = filter === 'all'
-                ? transactionHistory
-                : transactionHistory.filter(t => t.type === filter);
-
-            if (filteredHistory.length === 0) {
-                historyList.innerHTML = '<div class="no-history">Nenhuma transação encontrada</div>';
-                return;
-            }
-
-            historyList.innerHTML = filteredHistory.map(transaction => `
-                <div class="history-item ${transaction.type}">
-                    <div class="history-icon">
-                        <i class="material-icons">
-                            ${transaction.type === 'points' ? 'loyalty' : 'local_offer'}
-                        </i>
-                    </div>
-                    <div class="history-details">
-                        <div class="history-amount">
-                            ${transaction.type === 'points'
-                    ? `${transaction.amount} pontos`
-                    : `R$ ${transaction.amount.toFixed(2)}`}
-                        </div>
-                        <div class="history-reason">${transaction.reason}</div>
-                        <div class="history-date">${formatDate(transaction.date)}</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', () => {
-            // Botões de ação
-            document.querySelectorAll('.action-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const action = e.target.closest('.action-btn').dataset.action;
-                    if (action) {
-                        showActionGroup(action);
-                    }
-                });
-            });
-
-            // Botões de confirmação
-            document.querySelectorAll('.confirm-action').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const group = btn.closest('.action-group');
-                    const type = group.classList.contains('points-group') ? 'points' : 'coupons';
-                    const amount = parseFloat(group.querySelector('input[type="number"]').value);
-                    const reason = group.querySelector('input[type="text"]').value;
-
-                    if (amount && reason) {
-                        addTransaction(type, amount, reason);
-                        hideModal();
-                    } else {
-                        alert('Por favor, preencha todos os campos.');
-                    }
-                });
-            });
-
-            // Botões de cancelamento
-            document.querySelectorAll('.cancel-action').forEach(btn => {
-                btn.addEventListener('click', hideModal);
-            });
-
-            // Filtro de histórico
-            document.querySelector('#historyFilter').addEventListener('change', updateHistoryList);
-
-            // Fechar modal ao clicar no overlay
-            document.querySelector('.modal-overlay').addEventListener('click', (e) => {
-                if (e.target === e.currentTarget) {
-                    hideModal();
-                }
-            });
-
-            // Fechar modal ao clicar no botão X
-            document.querySelector('.close-modal').addEventListener('click', hideModal);
-        });
-
-        // Menu functionality
-        const menuButton = document.getElementById('menuButton');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuContent = document.getElementById('menuContent');
-
-        menuButton.addEventListener('click', () => {
-            menuOverlay.style.display = 'block';
-            menuContent.classList.add('active');
-        });
-
-        menuOverlay.addEventListener('click', () => {
-            menuOverlay.style.display = 'none';
-            menuContent.classList.remove('active');
-        });
-
-        // Client search functionality
-        const clientSearch = document.getElementById('clientSearch');
-        const searchResults = document.getElementById('searchResults');
-        const selectedClient = document.getElementById('selectedClient');
-        const selectedClientName = document.getElementById('selectedClientName');
-        const clearClient = document.getElementById('clearClient');
-
-        // Sample client data
-        const clients = [
-            {
-                id: 1,
-                name: 'João Silva',
-                phone: '(11) 99999-9999',
-                cpf: '123.456.789-00',
-                points: 5,
-                coupons: [
-                    { id: 1, value: 10, validUntil: '2024-05-30' },
-                    { id: 2, value: 15, validUntil: '2024-06-15' }
-                ]
-            },
-            {
-                id: 2,
-                name: 'Maria Santos',
-                phone: '(11) 98888-8888',
-                cpf: '987.654.321-00',
-                points: 12,
-                coupons: [
-                    { id: 3, value: 20, validUntil: '2024-06-01' }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Pedro Oliveira',
-                phone: '(11) 97777-7777',
-                cpf: '456.789.123-00',
-                points: 0,
-                coupons: []
-            }
-        ];
-
-        function filterClients(searchTerm) {
-            return clients.filter(client =>
-                client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                client.phone.replace(/\D/g, '').includes(searchTerm.replace(/\D/g, '')) ||
-                client.cpf.replace(/\D/g, '').includes(searchTerm.replace(/\D/g, ''))
-            );
-        }
-
-        function displayResults(results) {
-            searchResults.innerHTML = '';
-
-            if (results.length > 0) {
-                results.forEach(client => {
-                    const div = document.createElement('div');
-                    div.className = 'search-result-item';
-                    div.innerHTML = `
-                        <div class="client-info">
-                            <div>
-                                <div class="client-name">${client.name}</div>
-                                <div class="client-details">
-                                    <span class="client-phone">${client.phone}</span>
-                                    <span class="client-cpf">${client.cpf}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    div.addEventListener('click', () => selectClient(client));
-                    searchResults.appendChild(div);
-                });
-            } else {
-                const div = document.createElement('div');
-                div.className = 'no-results';
-                div.textContent = 'Nenhum cliente encontrado';
-                searchResults.appendChild(div);
-            }
-
-            searchResults.classList.add('active');
-        }
-
-        function hideResults() {
-            searchResults.classList.remove('active');
-        }
-
-        function selectClient(client) {
-            selectedClientName.textContent = client.name;
-            document.getElementById('selectedClientPhone').textContent = client.phone;
-            document.getElementById('selectedClientPoints').textContent = client.points;
-
-            const couponsList = document.getElementById('selectedClientCoupons');
-            couponsList.innerHTML = '';
-
-            if (client.coupons.length > 0) {
-                client.coupons.forEach(coupon => {
-                    const couponElement = document.createElement('div');
-                    couponElement.className = 'coupon-item';
-                    couponElement.innerHTML = `
-                        <div class="coupon-value">${coupon.value}% OFF</div>
-                        <div class="coupon-validity">Válido até: ${new Date(coupon.validUntil).toLocaleDateString()}</div>
-                    `;
-                    couponsList.appendChild(couponElement);
-                });
-            } else {
-                couponsList.innerHTML = '<div class="no-coupons">Nenhum cupom disponível</div>';
-            }
-
-            selectedClient.style.display = 'block';
-            clientSearch.value = '';
-            hideResults();
-        }
-
-        clientSearch.addEventListener('input', (e) => {
-            const searchTerm = e.target.value;
-            if (searchTerm.length > 0) {
-                const results = filterClients(searchTerm);
-                displayResults(results);
-            } else {
-                hideResults();
-            }
-        });
-
-        clientSearch.addEventListener('focus', () => {
-            if (clientSearch.value.length > 0) {
-                const results = filterClients(clientSearch.value);
-                displayResults(results);
-            }
-        });
-
-        clearClient.addEventListener('click', () => {
-            selectedClient.style.display = 'none';
-            clientSearch.focus();
-        });
-
-        // Close results when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.search-container')) {
-                hideResults();
-            }
-        });
-
-        // Handle mobile keyboard
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            clientSearch.addEventListener('blur', () => {
-                setTimeout(hideResults, 200);
-            });
-        }
-
-        // Promotion type selection
-        const promotionOptions = document.querySelectorAll('.promotion-option');
-        const campaignsList = document.getElementById('campaignsList');
-        const discountInputs = document.getElementById('discountInputs');
-        const pointsInputs = document.getElementById('pointsInputs');
-
-        // Sample campaign data
-        const campaigns = [
-            {
-                id: 1,
-                title: "Black Friday",
-                type: "discount",
-                description: "Desconto especial de Black Friday",
-                discount: 20,
-                minPurchase: 50,
-                status: "active",
-                validUntil: "2024-11-30"
-            },
-            {
-                id: 2,
-                title: "Programa de Fidelidade",
-                type: "points",
-                description: "Acumule pontos a cada compra",
-                pointsPerReal: 1,
-                minPointsForReward: 100,
-                status: "active",
-                validUntil: "2024-12-31"
-            },
-            {
-                id: 3,
-                title: "Promoção de Verão",
-                type: "discount",
-                description: "Descontos especiais para o verão",
-                discount: 15,
-                minPurchase: 30,
-                status: "pending",
-                validUntil: "2024-03-01"
-            }
-        ];
-
-        function displayCampaigns(type) {
-            campaignsList.innerHTML = '';
-            const filteredCampaigns = campaigns.filter(campaign => campaign.type === type);
-
-            if (filteredCampaigns.length === 0) {
-                campaignsList.innerHTML = `
-                    <div class="no-campaigns">
-                        Nenhuma campanha ${type === 'discount' ? 'de desconto' : 'de pontos'} ativa no momento
-                    </div>
-                `;
-                return;
-            }
-
-            filteredCampaigns.forEach(campaign => {
-                const div = document.createElement('div');
-                div.className = 'campaign-item';
-                div.dataset.id = campaign.id;
-                div.dataset.type = campaign.type;
-
-                let details = '';
-                if (campaign.type === 'discount') {
-                    details = `
-                        <p>
-                            <i class="material-icons" style="font-size: 16px; color: var(--primary);">local_offer</i>
-                            Desconto de ${campaign.discount}%
-                        </p>
-                        <p>
-                            <i class="material-icons" style="font-size: 16px; color: var(--primary);">shopping_cart</i>
-                            Mínimo de compra: R$ ${campaign.minPurchase.toFixed(2)}
-                        </p>
-                    `;
-                } else if (campaign.type === 'points') {
-                    details = `
-                        <p>
-                            <i class="material-icons" style="font-size: 16px; color: var(--primary);">star</i>
-                            ${campaign.pointsPerReal} ponto por R$ 1,00
-                        </p>
-                        <p>
-                            <i class="material-icons" style="font-size: 16px; color: var(--primary);">redeem</i>
-                            ${campaign.minPointsForReward} pontos para recompensa
-                        </p>
-                    `;
-                }
-
-                div.innerHTML = `
-                    <div class="campaign-header">
-                        <div class="campaign-title">${campaign.title}</div>
-                        <div class="campaign-type">
-                            <i class="material-icons" style="font-size: 16px;">
-                                ${campaign.type === 'discount' ? 'local_offer' : 'loyalty'}
-                            </i>
-                            ${campaign.type === 'discount' ? 'Desconto' : 'Pontos'}
-                        </div>
-                    </div>
-                    <div class="campaign-details">
-                        <p>${campaign.description}</p>
-                        ${details}
-                        <p>
-                            <i class="material-icons" style="font-size: 16px; color: var(--primary);">event</i>
-                            Válido até: ${new Date(campaign.validUntil).toLocaleDateString()}
-                        </p>
-                        <span class="campaign-status status-${campaign.status}">
-                            <i class="material-icons" style="font-size: 16px;">
-                                ${campaign.status === 'active' ? 'check_circle' : 'pending'}
-                            </i>
-                            ${campaign.status === 'active' ? 'Ativa' : 'Pendente'}
-                        </span>
-                    </div>
-                `;
-
-                div.addEventListener('click', () => selectCampaign(campaign));
-                campaignsList.appendChild(div);
-            });
-
-            campaignsList.classList.add('active');
-        }
-
-        function selectCampaign(campaign) {
-            // Remove selection from all campaigns
-            document.querySelectorAll('.campaign-item').forEach(item => {
-                item.classList.remove('selected');
-            });
-
-            // Add selection to clicked campaign
-            const selectedItem = document.querySelector(`.campaign-item[data-id="${campaign.id}"]`);
-            selectedItem.classList.add('selected');
-
-            // Show appropriate inputs
-            discountInputs.classList.toggle('active', campaign.type === 'discount');
-            pointsInputs.classList.toggle('active', campaign.type === 'points');
-
-            // Update points display if needed
-            if (campaign.type === 'points') {
-                const selectedClient = document.getElementById('selectedClientName').textContent;
-                if (selectedClient) {
-                    // Here you would get the actual points from your backend
-                    document.getElementById('currentPoints').textContent = '5'; // Example value
-                }
-            }
-        }
-
-        promotionOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remove selection from all options
-                promotionOptions.forEach(opt => opt.classList.remove('selected'));
-                // Add selection to clicked option
-                option.classList.add('selected');
-
-                // Display campaigns of selected type
-                const type = option.dataset.type;
-                displayCampaigns(type);
-            });
-        });
-
-        // Initialize with discount selected
-        document.querySelector('.promotion-option[data-type="discount"]').click();
-
-        // Register sale button
-        registerButton.addEventListener('click', () => {
-            const selectedCampaign = document.querySelector('.campaign-item.selected');
-            if (!selectedCampaign) {
-                alert('Selecione uma campanha');
-                return;
-            }
-
-            const campaignId = selectedCampaign.dataset.id;
-            const campaignType = selectedCampaign.dataset.type;
-            const campaign = campaigns.find(c => c.id === parseInt(campaignId));
-
-            let saleData = {
-                campaignId,
-                campaignType,
-                clientId: document.getElementById('selectedClientName').textContent ? '1' : null // Example client ID
-            };
-
-            if (campaignType === 'discount') {
-                const purchaseValue = parseFloat(document.getElementById('purchaseValue').value);
-
-                if (isNaN(purchaseValue) || purchaseValue <= 0) {
-                    alert('Digite um valor de compra válido');
-                    return;
-                }
-
-                if (purchaseValue < campaign.minPurchase) {
-                    alert(`Valor mínimo da compra: R$ ${campaign.minPurchase.toFixed(2)}`);
-                    return;
-                }
-
-                saleData.purchaseValue = purchaseValue;
-                saleData.discount = campaign.discount;
-                saleData.finalValue = purchaseValue * (1 - campaign.discount / 100);
-            } else if (campaignType === 'points') {
-                const currentPoints = parseInt(document.getElementById('currentPoints').textContent);
-                const pointsToAdd = Math.floor(purchaseValue * campaign.pointsPerReal);
-
-                saleData.currentPoints = currentPoints;
-                saleData.pointsToAdd = pointsToAdd;
-                saleData.newTotalPoints = currentPoints + pointsToAdd;
-            }
-
-            // Here you would send the saleData to your backend
-            console.log('Dados da venda:', saleData);
-            alert('Venda registrada com sucesso!');
-        });
-
-        // Product management
-        const addProductButton = document.getElementById('addProductButton');
-        const productList = document.getElementById('productList');
-
-        function addProduct() {
-            const product = {
-                id: Date.now(),
-                name: 'Produto ' + (productList.children.length + 1),
-                price: 0
-            };
-
-            const div = document.createElement('div');
-            div.className = 'product-item';
-            div.dataset.id = product.id;
-            div.innerHTML = `
-                <div class="product-info">
-                    <div class="product-name">${product.name}</div>
-                    <input type="number" 
-                           class="product-price" 
-                           value="${product.price}" 
-                           step="0.01" 
-                           min="0"
-                           placeholder="Preço">
-                </div>
-                <button class="remove-product" onclick="removeProduct(${product.id})">×</button>
-            `;
-
-            productList.appendChild(div);
-            updateTotal();
-        }
-
-        function removeProduct(id) {
-            const product = document.querySelector(`.product-item[data-id="${id}"]`);
-            if (product) {
-                product.remove();
-                updateTotal();
-            }
-        }
-
-        function updateTotal() {
-            const products = document.querySelectorAll('.product-item');
-            let total = 0;
-
-            products.forEach(product => {
-                const priceInput = product.querySelector('.product-price');
-                const price = parseFloat(priceInput.value) || 0;
-                total += price;
-            });
-
-            document.getElementById('purchaseValue').value = total.toFixed(2);
-        }
-
-        addProductButton.addEventListener('click', addProduct);
-
-        // Initialize with one product
-        addProduct();
-
-        // Product input type selection
-        const productOptions = document.querySelectorAll('.product-option');
-        const scanSection = document.getElementById('scanSection');
-        const manualInput = document.getElementById('manualInput');
-
-        productOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                productOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-
-                const type = option.dataset.type;
-                scanSection.classList.toggle('active', type === 'scan');
-                manualInput.classList.toggle('active', type === 'manual');
-            });
-        });
-
-        // Initialize with manual input selected
-        document.querySelector('.product-option[data-type="manual"]').click();
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const modal = document.querySelector('.modal-overlay');
-            const openModalBtn = document.querySelector('.open-modal');
-            const closeModalBtn = document.querySelector('.close-modal');
-            const actionBtns = document.querySelectorAll('.action-btn');
-            const inputGroups = document.querySelectorAll('.input-group');
-            const actionGroups = document.querySelectorAll('.action-group');
-            const confirmActionBtn = document.querySelector('.confirm-action');
-            const cancelActionBtn = document.querySelector('.cancel-action');
-            const historyFilter = document.querySelector('.history-filters select');
-
-            // Abrir modal
-            openModalBtn.addEventListener('click', () => {
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-
-            // Fechar modal
-            closeModalBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                resetModal();
-            });
-
-            // Fechar modal ao clicar fora
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    resetModal();
-                }
-            });
-
-            // Mostrar grupo de inputs correspondente ao botão clicado
-            actionBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const actionType = btn.dataset.action;
-                    inputGroups.forEach(group => {
-                        group.style.display = 'none';
-                        if (group.dataset.action === actionType) {
-                            group.style.display = 'block';
-                        }
-                    });
-                    actionGroups.forEach(group => {
-                        group.style.display = 'none';
-                        if (group.dataset.action === actionType) {
-                            group.style.display = 'block';
-                        }
-                    });
-                });
-            });
-
-            // Confirmar ação
-            confirmActionBtn.addEventListener('click', () => {
-                // Aqui você pode adicionar a lógica para processar a ação
-                // Por exemplo, enviar para o servidor
-                alert('Ação confirmada!');
-                resetModal();
-            });
-
-            // Cancelar ação
-            cancelActionBtn.addEventListener('click', () => {
-                resetModal();
-            });
-
-            // Filtrar histórico
-            historyFilter.addEventListener('change', () => {
-                const filterValue = historyFilter.value;
-                const historyItems = document.querySelectorAll('.history-item');
-
-                historyItems.forEach(item => {
-                    if (filterValue === 'all' || item.dataset.type === filterValue) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-
-            // Resetar modal
-            function resetModal() {
-                inputGroups.forEach(group => {
-                    group.style.display = 'none';
-                });
-                actionGroups.forEach(group => {
-                    group.style.display = 'none';
-                });
-                document.querySelectorAll('input').forEach(input => {
-                    input.value = '';
-                });
-            }
-        });
-    </script>
+    <script src="merchant-dashboard.js"></script>
 </body>
 
 </html>

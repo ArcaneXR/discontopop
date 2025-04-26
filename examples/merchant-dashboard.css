@@ -28,7 +28,7 @@ body {
 .container {
     width: 100%;
     margin: 0 auto;
-    padding: 15px;
+    padding: 5px;
     flex: 1;
 }
 
@@ -36,34 +36,36 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 0px 0;
     border-bottom: 1px solid #eee;
 }
 
 .store-name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: var(--primary);
+    text-align: center;
+    flex: 1;
 }
 
 .menu-button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 0px;
     color: var(--text);
 }
 
 .main-content {
-    margin-top: 30px;
+    margin-top: 5px;
     text-align: center;
 }
 
 .manual-section {
     background: white;
-    border-radius: 12px;
-    padding: 30px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     margin: 0 auto;
 }
@@ -75,7 +77,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -909,6 +911,7 @@ body {
         opacity: 0;
         transform: translate(-50%, -48%);
     }
+
     to {
         opacity: 1;
         transform: translate(-50%, -50%);
@@ -1014,4 +1017,199 @@ body {
 
 .action-btn .material-icons {
     font-size: 20px;
+}
+
+
+/* Estilos existentes */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.points-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.action-group {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.action-group h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.action-btn i {
+    font-size: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.action-group .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.confirm-action,
+.cancel-action {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.confirm-action {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-action {
+    background-color: #f44336;
+    color: white;
+}
+
+.history-section {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.history-filters {
+    margin-bottom: 15px;
+}
+
+.history-filters select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.history-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item .date {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.history-item .description {
+    margin: 5px 0;
+}
+
+.history-item .type {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.type-points {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.type-coupon {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
 }

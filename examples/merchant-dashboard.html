@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discontopop - Dashboard do Lojista</title>
+    <title>Discontopop - Registro de Vendas</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             --primary: #FF6B6B;
@@ -28,113 +29,185 @@
             color: var(--text);
             font-size: 16px;
             line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
             width: 100%;
             margin: 0 auto;
             padding: 15px;
+            flex: 1;
         }
 
         .header {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
             padding: 15px 0;
             border-bottom: 1px solid #eee;
         }
 
-        .logo {
-            font-size: 20px;
+        .store-name {
+            font-size: 18px;
             font-weight: bold;
             color: var(--primary);
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--text);
+        }
+
+        .main-content {
+            margin-top: 30px;
             text-align: center;
         }
 
-        .nav {
+        .scan-section {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .scan-section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .scan-preview {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background: #f5f5f5;
+            border-radius: 8px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            align-items: center;
             justify-content: center;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: var(--text);
-            padding: 8px 12px;
-            border-radius: 5px;
-            background: white;
-            font-size: 14px;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .card h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .metric {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
-
-        .campaign-list {
-            margin-top: 20px;
-        }
-
-        .campaign-list h3 {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .campaign-item {
-            background: white;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .campaign-item>div {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .campaign-item h4 {
-            font-size: 16px;
-        }
-
-        .campaign-item p {
-            font-size: 14px;
             color: #666;
         }
 
-        .btn {
+        .scan-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto;
+        }
+
+        .scan-button svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        .manual-input {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .manual-input.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .product-fields {
+            display: grid;
+            gap: 15px;
+        }
+
+        .scan-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #666;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        .manual-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .manual-section h3 {
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group select,
+        .form-group input {
             width: 100%;
             padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 12px 24px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
+            width: 100%;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
         }
 
         .btn-primary {
@@ -147,90 +220,66 @@
             color: white;
         }
 
-        .status {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            align-self: flex-start;
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            margin-top: auto;
+            border-top: 1px solid #eee;
         }
 
-        .status-active {
-            background: var(--success);
-            color: white;
-        }
-
-        .status-pending {
-            background: var(--warning);
-            color: var(--text);
-        }
-
-        .status-expired {
-            background: var(--error);
-            color: white;
-        }
-
-        .campaign-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
+        .app-name {
+            color: var(--primary);
             font-size: 14px;
-        }
-
-        .campaign-value {
-            color: var(--success);
             font-weight: bold;
         }
 
-        .campaign-type {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 12px;
-            background: #eee;
-            margin-right: 8px;
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 100;
         }
 
-        .type-coupon {
-            background: #FFE0B2;
-            color: #E65100;
-        }
-
-        .type-points {
-            background: #B2DFDB;
-            color: #00796B;
-        }
-
-        .register-sale {
-            margin-top: 20px;
-            padding: 20px;
+        .menu-content {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 250px;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transform: translateX(100%);
+            transition: transform 0.3s;
         }
 
-        .register-sale h3 {
+        .menu-content.active {
+            transform: translateX(0);
+        }
+
+        .menu-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .menu-list li {
             margin-bottom: 15px;
+        }
+
+        .menu-list a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            display: block;
+            padding: 8px 0;
+        }
+
+        .menu-list a:hover {
             color: var(--primary);
-        }
-
-        .register-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .register-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .register-option input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            flex: 1;
         }
 
         .language-selector {
@@ -241,6 +290,7 @@
             border-radius: 5px;
             background: white;
             border: 1px solid #eee;
+            z-index: 101;
         }
 
         /* Tablet */
@@ -249,37 +299,9 @@
                 padding: 20px;
             }
 
-            .header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .logo {
-                text-align: left;
-            }
-
-            .nav {
-                flex-wrap: nowrap;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .campaign-item {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .btn {
-                width: auto;
-                padding: 10px 20px;
-            }
-
-            .register-options {
-                flex-direction: row;
+            .scan-section,
+            .manual-section {
+                padding: 40px;
             }
         }
 
@@ -288,18 +310,493 @@
             .container {
                 max-width: 1200px;
             }
+        }
 
-            .dashboard-grid {
-                grid-template-columns: repeat(3, 1fr);
+        .search-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-input-container {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            padding-right: 40px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-top: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .client-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .client-name {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .client-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .client-phone,
+        .client-cpf {
+            display: block;
+            margin-top: 4px;
+        }
+
+        .no-results {
+            padding: 12px;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 768px) {
+            .search-input {
+                font-size: 16px;
+                /* Prevents zoom on iOS */
             }
 
-            .card {
-                padding: 20px;
+            .search-results {
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                max-height: 50vh;
+                border-radius: 12px 12px 0 0;
+                margin: 0;
             }
 
-            .metric {
-                font-size: 24px;
+            .search-results.active {
+                display: block;
+                animation: slideUp 0.3s ease-out;
             }
+
+            @keyframes slideUp {
+                from {
+                    transform: translateY(100%);
+                }
+
+                to {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .add-client-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-client-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .add-client-button svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        .promotion-type {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .promotion-option {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .promotion-option:hover {
+            border-color: var(--primary);
+        }
+
+        .promotion-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .promotion-option .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .promotion-inputs {
+            display: none;
+        }
+
+        .promotion-inputs.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .points-info {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .points-info .current-points {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .campaigns-list {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .campaigns-list.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .campaign-item {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .campaign-item:hover {
+            border-color: var(--primary);
+        }
+
+        .campaign-item.selected {
+            border-color: var(--primary);
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .campaign-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .campaign-title {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .campaign-type {
+            font-size: 14px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .campaign-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .campaign-details p {
+            margin: 5px 0;
+        }
+
+        .campaign-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-active {
+            background: rgba(0, 200, 83, 0.1);
+            color: #00C853;
+        }
+
+        .status-pending {
+            background: rgba(255, 214, 0, 0.1);
+            color: #FFD600;
+        }
+
+        .no-campaigns {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .create-campaign {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .create-campaign button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .campaign-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .add-product-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .add-product-button:hover {
+            opacity: 0.9;
+        }
+
+        .add-product-button svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2;
+        }
+
+        .product-list {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .remove-product {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .product-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .product-option {
+            flex: 1;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-option:hover {
+            border-color: var(--primary);
+        }
+
+        .product-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .product-option .icon {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .product-option .title {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .product-option .description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .client-scan-section {
+            text-align: center;
+            margin: 15px auto;
+        }
+
+        .client-scan-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+
+        .client-scan-button:hover {
+            opacity: 0.9;
+        }
+
+        .client-scan-button .material-icons {
+            font-size: 24px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+
+        .action-button:hover {
+            opacity: 0.9;
+        }
+
+        .action-button .material-icons {
+            font-size: 20px;
         }
     </style>
 </head>
@@ -312,94 +809,299 @@
 
     <div class="container">
         <header class="header">
-            <div class="logo">Discontopop</div>
-            <nav class="nav">
-                <a href="#" data-i18n="common.dashboard">Dashboard</a>
-                <a href="#" data-i18n="common.campaigns">Campanhas</a>
-                <a href="#" data-i18n="common.clients">Clientes</a>
-                <a href="#" data-i18n="common.reports">Relatórios</a>
-            </nav>
+            <div class="store-name">Minha Loja</div>
+            <button class="menu-button" id="menuButton">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"></path>
+                </svg>
+            </button>
         </header>
 
-        <main>
-            <div class="dashboard-grid">
-                <div class="card">
-                    <h3 data-i18n="merchant.dashboard.activeCampaigns">Campanhas Ativas</h3>
-                    <div class="metric">5</div>
-                    <p data-i18n="merchant.dashboard.inProgress">Em andamento</p>
-                </div>
-                <div class="card">
-                    <h3 data-i18n="merchant.dashboard.dailyPerformance">Desempenho do Dia</h3>
-                    <div class="metric">R$ 1.250</div>
-                    <p data-i18n="merchant.dashboard.totalValue">Valor total</p>
-                </div>
-                <div class="card">
-                    <h3 data-i18n="merchant.dashboard.engagedClients">Clientes Engajados</h3>
-                    <div class="metric">42</div>
-                    <p data-i18n="merchant.dashboard.today">Hoje</p>
-                </div>
+        <main class="main-content">
+            <div class="scan-section">
+                <h2>Escanear QR Code</h2>
+                <button class="scan-button">
+                    <svg class="scan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18"></path>
+                    </svg>
+                    Iniciar Escaneamento
+                </button>
             </div>
 
-            <div class="register-sale">
-                <h3>Registrar Venda/Pontuação</h3>
-                <div class="register-options">
-                    <div class="register-option">
-                        <input type="text" placeholder="Código do Produto (QR Code/Código de Barras)">
-                        <button class="btn btn-secondary">Escanear</button>
-                    </div>
-                    <div class="register-option">
-                        <input type="text" placeholder="ID/Número do Cliente">
-                        <button class="btn btn-primary">Registrar</button>
-                    </div>
-                </div>
+            <div class="divider">
+                <span>ou</span>
             </div>
 
-            <div class="campaign-list">
-                <h3 data-i18n="merchant.dashboard.recentCampaigns">Campanhas Recentes</h3>
-                <div class="campaign-item">
-                    <div>
-                        <h4>Black Friday</h4>
-                        <p>Desconto de 30% em toda loja</p>
-                        <div class="campaign-info">
-                            <span class="campaign-type type-coupon">Cupom</span>
-                            <span>Validade: 30/11/2023</span>
-                        </div>
-                    </div>
-                    <span class="status status-active" data-i18n="common.active">Ativa</span>
-                </div>
-                <div class="campaign-item">
-                    <div>
-                        <h4>Programa de Fidelidade</h4>
-                        <p>Ganhe pontos a cada R$ 100 em compras</p>
-                        <div class="campaign-info">
-                            <span class="campaign-type type-points">Pontos</span>
-                            <span>Validade: 31/12/2023</span>
-                        </div>
-                    </div>
-                    <span class="status status-active" data-i18n="common.active">Ativa</span>
-                </div>
-                <div class="campaign-item">
-                    <div>
-                        <h4>Natal Especial</h4>
-                        <p>Desconto de 20% + pontos extras</p>
-                        <div class="campaign-info">
-                            <span class="campaign-type type-coupon">Cupom</span>
-                            <span class="campaign-type type-points">Pontos</span>
-                            <span>Validade: 25/12/2023</span>
-                        </div>
-                    </div>
-                    <span class="status status-pending">Pendente</span>
-                </div>
-            </div>
+            <div class="manual-section">
+                <h3>Registro de Venda</h3>
 
-            <div style="margin-top: 30px; text-align: center;">
-                <button class="btn btn-primary" data-i18n="merchant.dashboard.createCampaign">Criar Nova
-                    Campanha</button>
+                <div class="form-group">
+                    <label for="clientSearch">Buscar Cliente</label>
+                    <div class="search-container">
+                        <div class="search-input-container">
+                            <input type="text" id="clientSearch" class="search-input"
+                                placeholder="Digite nome, telefone ou CPF..." autocomplete="off">
+                            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <div class="search-results" id="searchResults"></div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="action-button" title="Escanear QR Code do Cliente">
+                                <span class="material-icons">qr_code_scanner</span>
+                            </button>
+                            <button class="action-button" title="Adicionar novo cliente">
+                                <span class="material-icons">add</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="selected-client" id="selectedClient" style="display: none;">
+                        <span id="selectedClientName"></span>
+                        <button id="clearClient">×</button>
+                    </div>
+                </div>
+
+                <div class="promotion-type">
+                    <div class="promotion-option" data-type="discount">
+                        <div class="icon">%</div>
+                        <div>Desconto</div>
+                    </div>
+                    <div class="promotion-option" data-type="points">
+                        <div class="icon">★</div>
+                        <div>Pontos</div>
+                    </div>
+                </div>
+
+                <div class="campaigns-list" id="campaignsList">
+                    <!-- Campaigns will be populated here -->
+                </div>
+
+                <div class="promotion-inputs" id="discountInputs">
+                    <div class="product-options">
+                        <div class="product-option" data-type="scan">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="title">Escanear Produto</div>
+                            <div class="description">Use a câmera para escanear o código do produto</div>
+                        </div>
+                        <div class="product-option" data-type="manual">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"></path>
+                                </svg>
+                            </div>
+                            <div class="title">Adicionar Manualmente</div>
+                            <div class="description">Digite os dados do produto</div>
+                        </div>
+                    </div>
+
+                    <div class="scan-section" id="scanSection">
+                        <h4>Escanear Código do Produto</h4>
+                        <div class="scan-preview">
+                            Posicione o código na câmera
+                        </div>
+                        <button class="scan-button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M3 7V3h4M3 17v4h4M21 7V3h-4M21 17v4h-4M7 3h10M7 21h10M3 7h18M3 17h18"></path>
+                            </svg>
+                            Iniciar Escaneamento
+                        </button>
+                    </div>
+
+                    <div class="manual-input" id="manualInput">
+                        <div class="product-fields">
+                            <div class="form-group">
+                                <label for="productName">Nome do Produto</label>
+                                <input type="text" id="productName" placeholder="Digite o nome do produto">
+                            </div>
+                            <div class="form-group">
+                                <label for="productCode">Código do Produto</label>
+                                <input type="text" id="productCode" placeholder="Digite o código do produto">
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice">Preço (R$)</label>
+                                <input type="number" id="productPrice" step="0.01" min="0" placeholder="0,00">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top: 15px;">Adicionar Produto</button>
+                    </div>
+
+                    <div class="product-list" id="productList">
+                        <!-- Products will be added here -->
+                    </div>
+                </div>
+
+                <div class="promotion-inputs" id="pointsInputs">
+                    <div class="points-info">
+                        <div>Pontos Atuais</div>
+                        <div class="current-points" id="currentPoints">0</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="registerSale">Registrar Venda</button>
             </div>
         </main>
     </div>
 
+    <footer class="footer">
+        <div class="app-name">Discontopop</div>
+    </footer>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-content" id="menuContent">
+        <nav>
+            <ul class="menu-list">
+                <li><a href="#" data-i18n="common.dashboard">Dashboard</a></li>
+                <li><a href="#" data-i18n="common.campaigns">Campanhas</a></li>
+                <li><a href="#" data-i18n="common.clients">Clientes</a></li>
+                <li><a href="#" data-i18n="common.reports">Relatórios</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <script>
+        // Menu functionality
+        const menuButton = document.getElementById('menuButton');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuContent = document.getElementById('menuContent');
+
+        menuButton.addEventListener('click', () => {
+            menuOverlay.style.display = 'block';
+            menuContent.classList.add('active');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            menuOverlay.style.display = 'none';
+            menuContent.classList.remove('active');
+        });
+
+        // Client search functionality
+        const clientSearch = document.getElementById('clientSearch');
+        const searchResults = document.getElementById('searchResults');
+        const selectedClient = document.getElementById('selectedClient');
+        const selectedClientName = document.getElementById('selectedClientName');
+        const clearClient = document.getElementById('clearClient');
+
+        // Sample client data
+        const clients = [
+            {
+                id: 1,
+                name: 'João Silva',
+                phone: '(11) 99999-9999',
+                cpf: '123.456.789-00',
+                points: 5
+            },
+            {
+                id: 2,
+                name: 'Maria Santos',
+                phone: '(11) 98888-8888',
+                cpf: '987.654.321-00',
+                points: 12
+            },
+            {
+                id: 3,
+                name: 'Pedro Oliveira',
+                phone: '(11) 97777-7777',
+                cpf: '456.789.123-00',
+                points: 0
+            }
+        ];
+
+        function filterClients(searchTerm) {
+            return clients.filter(client =>
+                client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                client.phone.replace(/\D/g, '').includes(searchTerm.replace(/\D/g, '')) ||
+                client.cpf.replace(/\D/g, '').includes(searchTerm.replace(/\D/g, ''))
+            );
+        }
+
+        function displayResults(results) {
+            searchResults.innerHTML = '';
+
+            if (results.length > 0) {
+                results.forEach(client => {
+                    const div = document.createElement('div');
+                    div.className = 'search-result-item';
+                    div.innerHTML = `
+                        <div class="client-info">
+                            <div>
+                                <div class="client-name">${client.name}</div>
+                                <div class="client-details">
+                                    <span class="client-phone">${client.phone}</span>
+                                    <span class="client-cpf">${client.cpf}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    div.addEventListener('click', () => selectClient(client));
+                    searchResults.appendChild(div);
+                });
+            } else {
+                const div = document.createElement('div');
+                div.className = 'no-results';
+                div.textContent = 'Nenhum cliente encontrado';
+                searchResults.appendChild(div);
+            }
+
+            searchResults.classList.add('active');
+        }
+
+        function hideResults() {
+            searchResults.classList.remove('active');
+        }
+
+        function selectClient(client) {
+            selectedClientName.textContent = `${client.name} (${client.phone})`;
+            selectedClient.style.display = 'flex';
+            clientSearch.value = '';
+            hideResults();
+
+            // Update points display if needed
+            document.getElementById('currentPoints').textContent = client.points;
+        }
+
+        clientSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value;
+            if (searchTerm.length > 0) {
+                const results = filterClients(searchTerm);
+                displayResults(results);
+            } else {
+                hideResults();
+            }
+        });
+
+        clientSearch.addEventListener('focus', () => {
+            if (clientSearch.value.length > 0) {
+                const results = filterClients(clientSearch.value);
+                displayResults(results);
+            }
+        });
+
+        clearClient.addEventListener('click', () => {
+            selectedClient.style.display = 'none';
+            clientSearch.focus();
+        });
+
+        // Close results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                hideResults();
+            }
+        });
+
+        // Handle mobile keyboard
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            clientSearch.addEventListener('blur', () => {
+                setTimeout(hideResults, 200);
+            });
+        }
+
         // Simulação do i18n
         const translations = {
             'pt-BR': {
@@ -407,20 +1109,7 @@
                     dashboard: 'Dashboard',
                     campaigns: 'Campanhas',
                     clients: 'Clientes',
-                    reports: 'Relatórios',
-                    active: 'Ativa'
-                },
-                merchant: {
-                    dashboard: {
-                        activeCampaigns: 'Campanhas Ativas',
-                        dailyPerformance: 'Desempenho do Dia',
-                        engagedClients: 'Clientes Engajados',
-                        inProgress: 'Em andamento',
-                        totalValue: 'Valor total',
-                        today: 'Hoje',
-                        recentCampaigns: 'Campanhas Recentes',
-                        createCampaign: 'Criar Nova Campanha'
-                    }
+                    reports: 'Relatórios'
                 }
             },
             'en-US': {
@@ -428,20 +1117,7 @@
                     dashboard: 'Dashboard',
                     campaigns: 'Campaigns',
                     clients: 'Clients',
-                    reports: 'Reports',
-                    active: 'Active'
-                },
-                merchant: {
-                    dashboard: {
-                        activeCampaigns: 'Active Campaigns',
-                        dailyPerformance: 'Daily Performance',
-                        engagedClients: 'Engaged Clients',
-                        inProgress: 'In Progress',
-                        totalValue: 'Total Value',
-                        today: 'Today',
-                        recentCampaigns: 'Recent Campaigns',
-                        createCampaign: 'Create New Campaign'
-                    }
+                    reports: 'Reports'
                 }
             }
         };
@@ -470,6 +1146,272 @@
 
         // Inicializa com português
         updateLanguage('pt-BR');
+
+        // Add client button functionality
+        document.getElementById('addClientButton').addEventListener('click', () => {
+            // Here you would navigate to the add client page or open a modal
+            window.location.href = '/add-client'; // Example navigation
+            // Or open a modal:
+            // openAddClientModal();
+        });
+
+        // Promotion type selection
+        const promotionOptions = document.querySelectorAll('.promotion-option');
+        const campaignsList = document.getElementById('campaignsList');
+        const discountInputs = document.getElementById('discountInputs');
+        const pointsInputs = document.getElementById('pointsInputs');
+
+        // Sample campaign data
+        const campaigns = [
+            {
+                id: 1,
+                title: "Black Friday",
+                type: "discount",
+                description: "Desconto especial de Black Friday",
+                discount: 20,
+                minPurchase: 50,
+                status: "active",
+                validUntil: "2024-11-30"
+            },
+            {
+                id: 2,
+                title: "Programa de Fidelidade",
+                type: "points",
+                description: "Acumule pontos a cada compra",
+                pointsPerReal: 1,
+                minPointsForReward: 100,
+                status: "active",
+                validUntil: "2024-12-31"
+            },
+            {
+                id: 3,
+                title: "Promoção de Verão",
+                type: "discount",
+                description: "Descontos especiais para o verão",
+                discount: 15,
+                minPurchase: 30,
+                status: "pending",
+                validUntil: "2024-03-01"
+            }
+        ];
+
+        function displayCampaigns(type) {
+            campaignsList.innerHTML = '';
+            const filteredCampaigns = campaigns.filter(campaign => campaign.type === type);
+
+            if (filteredCampaigns.length === 0) {
+                campaignsList.innerHTML = `
+                    <div class="no-campaigns">
+                        Nenhuma campanha ${type === 'discount' ? 'de desconto' : 'de pontos'} ativa no momento
+                    </div>
+                `;
+                return;
+            }
+
+            filteredCampaigns.forEach(campaign => {
+                const div = document.createElement('div');
+                div.className = 'campaign-item';
+                div.dataset.id = campaign.id;
+                div.dataset.type = campaign.type;
+
+                let details = '';
+                if (campaign.type === 'discount') {
+                    details = `
+                        <p>Desconto: ${campaign.discount}%</p>
+                        <p>Mínimo de compra: R$ ${campaign.minPurchase.toFixed(2)}</p>
+                    `;
+                } else if (campaign.type === 'points') {
+                    details = `
+                        <p>${campaign.pointsPerReal} ponto por R$ 1,00</p>
+                        <p>${campaign.minPointsForReward} pontos para recompensa</p>
+                    `;
+                }
+
+                div.innerHTML = `
+                    <div class="campaign-header">
+                        <div class="campaign-title">${campaign.title}</div>
+                        <div class="campaign-type">${campaign.type === 'discount' ? 'Desconto' : 'Pontos'}</div>
+                    </div>
+                    <div class="campaign-details">
+                        <p>${campaign.description}</p>
+                        ${details}
+                        <p>Válido até: ${new Date(campaign.validUntil).toLocaleDateString()}</p>
+                        <span class="campaign-status status-${campaign.status}">
+                            ${campaign.status === 'active' ? 'Ativa' : 'Pendente'}
+                        </span>
+                    </div>
+                `;
+
+                div.addEventListener('click', () => selectCampaign(campaign));
+                campaignsList.appendChild(div);
+            });
+
+            campaignsList.classList.add('active');
+        }
+
+        function selectCampaign(campaign) {
+            // Remove selection from all campaigns
+            document.querySelectorAll('.campaign-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Add selection to clicked campaign
+            const selectedItem = document.querySelector(`.campaign-item[data-id="${campaign.id}"]`);
+            selectedItem.classList.add('selected');
+
+            // Show appropriate inputs
+            discountInputs.classList.toggle('active', campaign.type === 'discount');
+            pointsInputs.classList.toggle('active', campaign.type === 'points');
+
+            // Update points display if needed
+            if (campaign.type === 'points') {
+                const selectedClient = document.getElementById('selectedClientName').textContent;
+                if (selectedClient) {
+                    // Here you would get the actual points from your backend
+                    document.getElementById('currentPoints').textContent = '5'; // Example value
+                }
+            }
+        }
+
+        promotionOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selection from all options
+                promotionOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add selection to clicked option
+                option.classList.add('selected');
+
+                // Display campaigns of selected type
+                const type = option.dataset.type;
+                displayCampaigns(type);
+            });
+        });
+
+        // Initialize with discount selected
+        document.querySelector('.promotion-option[data-type="discount"]').click();
+
+        // Register sale button
+        registerButton.addEventListener('click', () => {
+            const selectedCampaign = document.querySelector('.campaign-item.selected');
+            if (!selectedCampaign) {
+                alert('Selecione uma campanha');
+                return;
+            }
+
+            const campaignId = selectedCampaign.dataset.id;
+            const campaignType = selectedCampaign.dataset.type;
+            const campaign = campaigns.find(c => c.id === parseInt(campaignId));
+
+            let saleData = {
+                campaignId,
+                campaignType,
+                clientId: document.getElementById('selectedClientName').textContent ? '1' : null // Example client ID
+            };
+
+            if (campaignType === 'discount') {
+                const purchaseValue = parseFloat(document.getElementById('purchaseValue').value);
+
+                if (isNaN(purchaseValue) || purchaseValue <= 0) {
+                    alert('Digite um valor de compra válido');
+                    return;
+                }
+
+                if (purchaseValue < campaign.minPurchase) {
+                    alert(`Valor mínimo da compra: R$ ${campaign.minPurchase.toFixed(2)}`);
+                    return;
+                }
+
+                saleData.purchaseValue = purchaseValue;
+                saleData.discount = campaign.discount;
+                saleData.finalValue = purchaseValue * (1 - campaign.discount / 100);
+            } else if (campaignType === 'points') {
+                const currentPoints = parseInt(document.getElementById('currentPoints').textContent);
+                const pointsToAdd = Math.floor(purchaseValue * campaign.pointsPerReal);
+
+                saleData.currentPoints = currentPoints;
+                saleData.pointsToAdd = pointsToAdd;
+                saleData.newTotalPoints = currentPoints + pointsToAdd;
+            }
+
+            // Here you would send the saleData to your backend
+            console.log('Dados da venda:', saleData);
+            alert('Venda registrada com sucesso!');
+        });
+
+        // Product management
+        const addProductButton = document.getElementById('addProductButton');
+        const productList = document.getElementById('productList');
+
+        function addProduct() {
+            const product = {
+                id: Date.now(),
+                name: 'Produto ' + (productList.children.length + 1),
+                price: 0
+            };
+
+            const div = document.createElement('div');
+            div.className = 'product-item';
+            div.dataset.id = product.id;
+            div.innerHTML = `
+                <div class="product-info">
+                    <div class="product-name">${product.name}</div>
+                    <input type="number" 
+                           class="product-price" 
+                           value="${product.price}" 
+                           step="0.01" 
+                           min="0"
+                           placeholder="Preço">
+                </div>
+                <button class="remove-product" onclick="removeProduct(${product.id})">×</button>
+            `;
+
+            productList.appendChild(div);
+            updateTotal();
+        }
+
+        function removeProduct(id) {
+            const product = document.querySelector(`.product-item[data-id="${id}"]`);
+            if (product) {
+                product.remove();
+                updateTotal();
+            }
+        }
+
+        function updateTotal() {
+            const products = document.querySelectorAll('.product-item');
+            let total = 0;
+
+            products.forEach(product => {
+                const priceInput = product.querySelector('.product-price');
+                const price = parseFloat(priceInput.value) || 0;
+                total += price;
+            });
+
+            document.getElementById('purchaseValue').value = total.toFixed(2);
+        }
+
+        addProductButton.addEventListener('click', addProduct);
+
+        // Initialize with one product
+        addProduct();
+
+        // Product input type selection
+        const productOptions = document.querySelectorAll('.product-option');
+        const scanSection = document.getElementById('scanSection');
+        const manualInput = document.getElementById('manualInput');
+
+        productOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                productOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+
+                const type = option.dataset.type;
+                scanSection.classList.toggle('active', type === 'scan');
+                manualInput.classList.toggle('active', type === 'manual');
+            });
+        });
+
+        // Initialize with manual input selected
+        document.querySelector('.product-option[data-type="manual"]').click();
     </script>
 </body>
 

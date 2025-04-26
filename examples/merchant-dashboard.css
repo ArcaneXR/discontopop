@@ -189,14 +189,15 @@ body {
 }
 
 .language-selector {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 5px;
-    border-radius: 5px;
-    background: white;
-    border: 1px solid #eee;
-    z-index: 101;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .search-container {
@@ -592,4 +593,396 @@ body {
             transform: translateY(0);
         }
     }
+}
+
+.client-profile-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.client-profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.client-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.client-profile-header span {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.client-profile-header span::before {
+    content: 'person';
+    font-family: 'Material Icons';
+    font-size: 24px;
+}
+
+.client-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.client-phone {
+    color: var(--text);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.client-phone::before {
+    content: 'phone';
+    font-family: 'Material Icons';
+    color: var(--secondary);
+}
+
+.client-points {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(78, 205, 196, 0.1);
+    padding: 12px 15px;
+    border-radius: 12px;
+}
+
+.points-label {
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.points-label::before {
+    content: 'star';
+    font-family: 'Material Icons';
+    color: var(--warning);
+}
+
+.points-value {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 20px;
+    background: white;
+    padding: 4px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.client-coupons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.coupons-label {
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.coupons-label::before {
+    content: 'local_offer';
+    font-family: 'Material Icons';
+    color: var(--primary);
+}
+
+.coupons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.coupon-item {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+    border: 1px solid rgba(255, 107, 107, 0.1);
+}
+
+.coupon-item:hover {
+    transform: translateX(4px);
+}
+
+.coupon-value {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.coupon-value::before {
+    content: 'confirmation_number';
+    font-family: 'Material Icons';
+    font-size: 24px;
+}
+
+.coupon-validity {
+    color: var(--text);
+    font-size: 14px;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.coupon-validity::before {
+    content: 'event';
+    font-family: 'Material Icons';
+    font-size: 18px;
+}
+
+.no-coupons {
+    color: var(--text);
+    opacity: 0.7;
+    font-style: italic;
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.no-coupons::before {
+    content: 'info';
+    font-family: 'Material Icons';
+    font-size: 18px;
+}
+
+#clearClient {
+    background: none;
+    border: none;
+    color: var(--text);
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#clearClient:hover {
+    background: rgba(0, 0, 0, 0.05);
+    opacity: 1;
+}
+
+#clearClient::before {
+    content: 'close';
+    font-family: 'Material Icons';
+    font-size: 20px;
+}
+
+.points-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(78, 205, 196, 0.1);
+    padding: 12px 15px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.manage-points-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.manage-points-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+
+.manage-points-btn .material-icons {
+    font-size: 18px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: var(--text);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text);
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    background: rgba(0, 0, 0, 0.05);
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.points-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.action-group {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.action-group h4 {
+    color: var(--text);
+    font-size: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.action-btn {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn.add-points:hover,
+.action-btn.add-coupon:hover {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+}
+
+.action-btn.remove-points:hover,
+.action-btn.remove-coupon:hover {
+    background: var(--error);
+    color: white;
+    border-color: var(--error);
+}
+
+.action-btn .material-icons {
+    font-size: 20px;
 }

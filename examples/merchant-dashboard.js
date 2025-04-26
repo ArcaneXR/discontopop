@@ -88,6 +88,7 @@ const clients = [
         id: 1,
         name: 'João Silva',
         phone: '(11) 99999-9999',
+        birthdate: '03/12/1990',
         cpf: '123.456.789-00',
         points: 5,
         activeCampaigns: ['Black Friday'],
@@ -422,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (firstTab && firstTabContent) {
             firstTab.classList.add('active');
-            firstTabContent.classList.add('active');
+            firstTabContent.style.display = 'block';
         }
     }
 
@@ -438,14 +439,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Hide all tab contents
                     if (tabContents.length > 0) {
-                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabContents.forEach(content => content.style.display = 'none');
                     }
 
                     // Show selected tab content
                     const tabId = tab.dataset.tab + 'Tab';
                     const selectedTab = document.getElementById(tabId);
                     if (selectedTab) {
-                        selectedTab.classList.add('active');
+                        selectedTab.style.display = 'block';
                     }
 
                     // Esconder inputs e botão

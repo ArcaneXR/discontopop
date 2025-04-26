@@ -288,8 +288,7 @@ body {
     color: #666;
 }
 
-.client-phone,
-.client-cpf {
+.client-info>div {
     display: block;
     margin-top: 4px;
 }
@@ -721,6 +720,11 @@ body {
 
 .tab-content.active {
     display: block;
+}
+
+
+.client-birthdate {
+    text-align: left;
 }
 
 .client-phone {

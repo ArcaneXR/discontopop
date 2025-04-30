@@ -114,40 +114,48 @@ const clients = [
                 minPointsForReward: 100,
                 status: "active",
                 validUntil: "2024-12-31"
-            },
-            {
-                id: 3,
-                title: "Promoção de Verão",
-                type: "discount",
-                description: "Descontos especiais para o verão",
-                discount: 15,
-                minPurchase: 30,
-                status: "active",
-                validUntil: "2024-03-01"
-            },
-            {
-                id: 4,
-                title: "Dia dos Pais",
-                type: "discount",
-                description: "Desconto especial para o Dia dos Pais",
-                discount: 25,
-                minPurchase: 100,
-                status: "active",
-                validUntil: "2024-08-11"
             }
         ]
+    },
+    {
+        id: 2,
+        name: 'Maria Oliveira',
+        phone: '(21) 98888-8888',
+        birthdate: '15/07/1985',
+        cpf: '987.654.321-00',
+        points: 12,
+        activeCampaigns: ['Verão Premiado'],
+        redeemableCampaigns: [],
+        availableCampaigns: []
+    },
+    {
+        id: 3,
+        name: 'Carlos Souza',
+        phone: '(31) 97777-7777',
+        birthdate: '22/01/1978',
+        cpf: '111.222.333-44',
+        points: 30,
+        activeCampaigns: ['Dia dos Pais'],
+        redeemableCampaigns: [],
+        availableCampaigns: []
     }
 ];
 
+function normalize(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
 function filterClients(searchTerm) {
+    const normalizedSearch = normalize(searchTerm);
     return clients.filter(client =>
-        client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        normalize(client.name).includes(normalizedSearch) ||
         client.phone.replace(/\D/g, '').includes(searchTerm.replace(/\D/g, '')) ||
         client.cpf.replace(/\D/g, '').includes(searchTerm.replace(/\D/g, ''))
     );
 }
 
 function displayResults(results) {
+    console.log('Exibindo resultados:', results);
     const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = '';
 
@@ -169,14 +177,17 @@ function displayResults(results) {
             div.addEventListener('click', () => selectClient(client));
             searchResults.appendChild(div);
         });
+        console.log('Resultados adicionados ao DOM');
     } else {
         const div = document.createElement('div');
         div.className = 'no-results';
         div.textContent = 'Nenhum cliente encontrado';
         searchResults.appendChild(div);
+        console.log('Nenhum resultado encontrado');
     }
 
     searchResults.classList.add('active');
+    console.log('Classe active adicionada');
 }
 
 function hideResults() {
@@ -188,7 +199,10 @@ function selectClient(client) {
     const selectedClientName = document.getElementById('selectedClientName');
     const selectedClient = document.getElementById('selectedClient');
 
+    // Limpar o conteúdo anterior antes de adicionar o novo
+    selectedClientName.innerHTML = '';
     selectedClientName.textContent = client.name;
+
     document.getElementById('selectedClientPhone').textContent = client.phone;
     document.getElementById('selectedClientBirthdate').textContent = client.birthdate || 'Data não informada';
     document.getElementById('activeCoupons').textContent = `${client.coupons?.length || 0}/10`;
@@ -493,26 +507,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const clearClient = document.getElementById('clearClient');
 
     if (clientSearch && searchResults && selectedClient && selectedClientName && clearClient) {
-        clientSearch.addEventListener('input', (e) => {
-            const searchTerm = e.target.value;
+        // Mostrar resultados ao digitar
+        clientSearch.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.trim();
+            console.log('Buscando por:', searchTerm); // Debug
+            
             if (searchTerm.length > 0) {
                 const results = filterClients(searchTerm);
+                console.log('Resultados:', results); // Debug
                 displayResults(results);
             } else {
+                displayResults(clients);
+            }
+        });
+
+        // Mostrar todos os clientes ao focar no campo
+        clientSearch.addEventListener('focus', function() {
+            displayResults(clients);
+        });
+
+        // Fechar resultados ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!clientSearch.contains(e.target) && !searchResults.contains(e.target)) {
                 hideResults();
             }
         });
 
-        clientSearch.addEventListener('focus', () => {
-            if (clientSearch.value.length > 0) {
-                const results = filterClients(clientSearch.value);
-                displayResults(results);
-            }
-        });
-
-        clearClient.addEventListener('click', () => {
+        // Limpar seleção
+        clearClient.addEventListener('click', function() {
             selectedClient.style.display = 'none';
+            clientSearch.value = '';
             clientSearch.focus();
+            displayResults(clients);
         });
     }
 

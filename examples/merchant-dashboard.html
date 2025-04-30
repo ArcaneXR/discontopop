@@ -26,14 +26,11 @@
                     <label for="clientSearch">Programa de Pontos</label>
                     <div class="search-container">
                         <div class="search-input-container">
-                            <input type="text" id="clientSearch" class="search-input"
-                                placeholder="Nome, telefone ou CPF..." autocomplete="off">
-                            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
+                            <input type="text" id="clientSearch" class="search-input" placeholder="Nome, telefone ou CPF..." autocomplete="off">
+                            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
-                            <div class="search-results" id="searchResults"></div>
                         </div>
                         <div class="action-buttons">
                             <button class="action-button" title="Escanear QR Code do Cliente">
@@ -43,6 +40,7 @@
                                 <span class="material-icons">add</span>
                             </button>
                         </div>
+                        <div id="searchResults" class="search-results"></div>
                     </div>
                 </div>
 
@@ -50,7 +48,7 @@
                     <div class="client-profile-card">
                         <div class="client-profile-header">
                             <span id="selectedClientName"></span>
-                            <button id="clearClient">×</button>
+                            <button id="clearClient"><span class="material-icons">close</span></button>
                         </div>
                         <div class="client-profile-info">
                             <div class="client-phone" id="selectedClientPhone"></div>

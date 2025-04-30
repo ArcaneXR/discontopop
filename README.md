@@ -18,7 +18,7 @@
 - [Licença](#-licença)
 
 ## 🌟 Visão Geral
-Discontopop é uma plataforma web que conecta lojistas e consumidores através de descontos, cashback e promoções. A plataforma é dividida em três perfis principais: Lojista, Cliente e Administrador, cada um com suas funcionalidades específicas.
+Descontopop é uma plataforma web que conecta lojistas e consumidores através de descontos, cashback e promoções. A plataforma é dividida em três perfis principais: Lojista, Cliente e Administrador, cada um com suas funcionalidades específicas.
 
 ### Objetivos
 - Conectar lojistas e consumidores

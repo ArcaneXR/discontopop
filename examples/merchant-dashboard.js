@@ -91,7 +91,7 @@ const clients = [
         birthdate: '03/12/1990',
         cpf: '123.456.789-00',
         points: 5,
-        activeCampaigns: ['Black Friday'],
+        activeCampaigns: ['Black Friday', 'Aniversário', 'Primeira Compra'],
         redeemableCampaigns: [
             {
                 id: 1,
@@ -102,11 +102,31 @@ const clients = [
                 minPurchase: 50,
                 status: "active",
                 validUntil: "2024-11-30"
+            },
+            {
+                id: 2,
+                title: "Aniversário",
+                type: "discount",
+                description: "Cupom especial de aniversário",
+                discount: 15,
+                minPurchase: 30,
+                status: "active",
+                validUntil: "2024-12-31"
+            },
+            {
+                id: 3,
+                title: "Primeira Compra",
+                type: "discount",
+                description: "Desconto para primeira compra",
+                discount: 10,
+                minPurchase: 20,
+                status: "active",
+                validUntil: "2024-12-15"
             }
         ],
         availableCampaigns: [
             {
-                id: 2,
+                id: 4,
                 title: "Programa de Fidelidade",
                 type: "points",
                 description: "Acumule pontos a cada compra",
@@ -124,9 +144,41 @@ const clients = [
         birthdate: '15/07/1985',
         cpf: '987.654.321-00',
         points: 12,
-        activeCampaigns: ['Verão Premiado'],
-        redeemableCampaigns: [],
-        availableCampaigns: []
+        activeCampaigns: ['Verão Premiado', 'Dia das Mães'],
+        redeemableCampaigns: [
+            {
+                id: 5,
+                title: "Verão Premiado",
+                type: "discount",
+                description: "Desconto especial de verão",
+                discount: 25,
+                minPurchase: 100,
+                status: "active",
+                validUntil: "2024-02-28"
+            },
+            {
+                id: 6,
+                title: "Dia das Mães",
+                type: "discount",
+                description: "Cupom especial para o Dia das Mães",
+                discount: 20,
+                minPurchase: 80,
+                status: "active",
+                validUntil: "2024-05-31"
+            }
+        ],
+        availableCampaigns: [
+            {
+                id: 7,
+                title: "Programa de Fidelidade",
+                type: "points",
+                description: "Acumule pontos a cada compra",
+                pointsPerReal: 2,
+                minPointsForReward: 50,
+                status: "active",
+                validUntil: "2024-12-31"
+            }
+        ]
     },
     {
         id: 3,
@@ -135,8 +187,39 @@ const clients = [
         birthdate: '22/01/1978',
         cpf: '111.222.333-44',
         points: 30,
-        activeCampaigns: ['Dia dos Pais'],
-        redeemableCampaigns: [],
+        activeCampaigns: ['Dia dos Pais', 'Cliente VIP'],
+        redeemableCampaigns: [
+            {
+                id: 8,
+                title: "Dia dos Pais",
+                type: "discount",
+                description: "Desconto especial para o Dia dos Pais",
+                discount: 30,
+                minPurchase: 150,
+                status: "active",
+                validUntil: "2024-08-31"
+            },
+            {
+                id: 9,
+                title: "Cliente VIP",
+                type: "discount",
+                description: "Desconto exclusivo para clientes VIP",
+                discount: 15,
+                minPurchase: 50,
+                status: "active",
+                validUntil: "2024-12-31"
+            },
+            {
+                id: 10,
+                title: "Cashback Premiado",
+                type: "points",
+                description: "Ganhe pontos em dobro nas compras",
+                pointsPerReal: 3,
+                minPointsForReward: 30,
+                status: "active",
+                validUntil: "2024-12-31"
+            }
+        ],
         availableCampaigns: []
     }
 ];
@@ -196,6 +279,7 @@ function hideResults() {
 }
 
 function selectClient(client) {
+    console.log('Cliente selecionado:', client);
     const selectedClientName = document.getElementById('selectedClientName');
     const selectedClient = document.getElementById('selectedClient');
 
@@ -205,15 +289,17 @@ function selectClient(client) {
 
     document.getElementById('selectedClientPhone').textContent = client.phone;
     document.getElementById('selectedClientBirthdate').textContent = client.birthdate || 'Data não informada';
-    document.getElementById('activeCoupons').textContent = `${client.coupons?.length || 0}/10`;
+    document.getElementById('activeCoupons').textContent = `${client.redeemableCampaigns?.length || 0}/10`;
     document.getElementById('activeCampaigns').textContent = client.activeCampaigns?.length || '0';
 
     // Atualizar campanhas para resgate
     const redeemableCampaigns = document.getElementById('redeemableCampaigns');
+    console.log('Campanhas para resgate:', client.redeemableCampaigns);
     redeemableCampaigns.innerHTML = '';
 
     if (client.redeemableCampaigns?.length > 0) {
         client.redeemableCampaigns.forEach(campaign => {
+            console.log('Criando elemento para campanha:', campaign);
             const div = createCampaignElement(campaign);
             redeemableCampaigns.appendChild(div);
         });
@@ -298,10 +384,15 @@ function createCampaignElement(campaign) {
                 </i>
                 ${campaign.status === 'active' ? 'Ativa' : 'Pendente'}
             </span>
+            <button class="btn btn-primary btn-redeem" style="margin-top: 10px; width: 100%;">Resgatar</button>
         </div>
     `;
 
-    div.addEventListener('click', () => handleCampaignAction(campaign));
+    div.querySelector('.btn-redeem').addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita disparar o evento do card inteiro
+        handleCampaignAction(campaign);
+    });
+
     return div;
 }
 

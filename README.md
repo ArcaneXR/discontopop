@@ -1,4 +1,4 @@
-# 🛍️ Discontopop - Plataforma de Descontos e Cashback
+# 🛍️ Descontopop - Plataforma de Descontos e Cashback
 
 <div align="center">
   <img src="public/logo.png" alt="Discontopop Logo" width="200"/>

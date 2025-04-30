@@ -337,28 +337,48 @@ function createCampaignElement(campaign) {
     div.dataset.type = campaign.type;
 
     let details = '';
+    let subtitle = '';
+    let rules = '';
+    let buttonText = '';
+
     if (campaign.type === 'discount') {
+        subtitle = 'Economize em suas compras com descontos exclusivos.';
         details = `
-            <p>
+            <div class="campaign-rule">
                 <i class="material-icons" style="font-size: 16px; color: var(--primary);">local_offer</i>
-                Desconto de ${campaign.discount}%
-            </p>
-            <p>
+                <span>Desconto de ${campaign.discount}%</span>
+            </div>
+            <div class="campaign-rule">
                 <i class="material-icons" style="font-size: 16px; color: var(--primary);">shopping_cart</i>
-                Mínimo de compra: R$ ${campaign.minPurchase.toFixed(2)}
-            </p>
+                <span>Mínimo de compra: R$ ${campaign.minPurchase.toFixed(2)}</span>
+            </div>
         `;
+        rules = `
+            <div class="campaign-rule">
+                <i class="material-icons" style="font-size: 16px; color: var(--primary);">info</i>
+                <span>Válido apenas para compras acima de R$ 20,00</span>
+            </div>
+        `;
+        buttonText = 'Resgatar Oferta';
     } else if (campaign.type === 'points') {
+        subtitle = 'Fidelize seus clientes acumulando pontos por compra.';
         details = `
-            <p>
+            <div class="campaign-rule">
                 <i class="material-icons" style="font-size: 16px; color: var(--primary);">star</i>
-                ${campaign.pointsPerReal} ponto por R$ 1,00
-            </p>
-            <p>
+                <span>${campaign.pointsPerReal} pontos por R$ 1,00 gasto</span>
+            </div>
+            <div class="campaign-rule">
                 <i class="material-icons" style="font-size: 16px; color: var(--primary);">redeem</i>
-                ${campaign.minPointsForReward} pontos para recompensa
-            </p>
+                <span>${campaign.minPointsForReward} pontos = R$ ${(campaign.minPointsForReward / 10).toFixed(2)} de desconto</span>
+            </div>
         `;
+        rules = `
+            <div class="campaign-rule">
+                <i class="material-icons" style="font-size: 16px; color: var(--primary);">info</i>
+                <span>Máximo de 200 pontos por mês</span>
+            </div>
+        `;
+        buttonText = 'Participar';
     }
 
     div.innerHTML = `
@@ -372,24 +392,32 @@ function createCampaignElement(campaign) {
             </div>
         </div>
         <div class="campaign-details">
-            <p>${campaign.description}</p>
-            ${details}
-            <p>
-                <i class="material-icons" style="font-size: 16px; color: var(--primary);">event</i>
-                Válido até: ${new Date(campaign.validUntil).toLocaleDateString()}
-            </p>
-            <span class="campaign-status status-${campaign.status}">
-                <i class="material-icons" style="font-size: 16px;">
-                    ${campaign.status === 'active' ? 'check_circle' : 'pending'}
-                </i>
-                ${campaign.status === 'active' ? 'Ativa' : 'Pendente'}
-            </span>
-            <button class="btn btn-primary btn-redeem" style="margin-top: 10px; width: 100%;">Resgatar</button>
+            <p class="campaign-subtitle">${subtitle}</p>
+            <p class="campaign-description">${campaign.description}</p>
+            <div class="campaign-rules">
+                ${details}
+                ${rules}
+            </div>
+            <div class="campaign-footer">
+                <p class="campaign-validity">
+                    <i class="material-icons" style="font-size: 16px; color: var(--primary);">event</i>
+                    Válido até: ${new Date(campaign.validUntil).toLocaleDateString()}
+                </p>
+                <span class="campaign-status status-${campaign.status}">
+                    <i class="material-icons" style="font-size: 16px;">
+                        ${campaign.status === 'active' ? 'check_circle' : 'pending'}
+                    </i>
+                    ${campaign.status === 'active' ? 'Ativa' : 'Pendente'}
+                </span>
+                <button class="btn btn-primary btn-campaign-action" style="margin-top: 10px; width: 100%;">
+                    ${buttonText}
+                </button>
+            </div>
         </div>
     `;
 
-    div.querySelector('.btn-redeem').addEventListener('click', (e) => {
-        e.stopPropagation(); // Evita disparar o evento do card inteiro
+    div.querySelector('.btn-campaign-action').addEventListener('click', (e) => {
+        e.stopPropagation();
         handleCampaignAction(campaign);
     });
 

@@ -84,8 +84,8 @@ Discontopop é uma plataforma web que conecta lojistas e consumidores através d
 
 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/discontopop.git
-cd discontopop
+git clone https://github.com/seu-usuario/descontopop.git
+cd descontopop
 ```
 
 2. Instale as dependências

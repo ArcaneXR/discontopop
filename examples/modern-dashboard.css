@@ -33,13 +33,283 @@ body {
     line-height: 1.5;
 }
 
+/* Container Principal */
 .container {
     width: 100%;
     max-width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    overflow-x: hidden;
     min-height: 100vh;
     background: var(--background);
+}
+
+/* Barra Superior - Mobile First */
+.top-bar {
+    background: white;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.menu-button, .profile-button {
+    padding: 0.5rem;
+    border-radius: var(--radius-full);
+    transition: all 0.2s;
+}
+
+.menu-button:hover, .profile-button:hover {
+    background: var(--background);
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Conteúdo Principal - Mobile First */
+.main-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Barra de Pesquisa - Mobile First */
+.search-bar {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-input {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+.search-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Grid de Clientes - Mobile First */
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.cliente-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.cliente-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Grid de Estatísticas - Mobile First */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Botões de Ação - Mobile First */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.action-button {
+    flex: 1;
+    min-width: 120px;
+    max-width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+/* Lista de Campanhas - Mobile First */
+.campaigns-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.campaign-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Modal - Mobile First */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+}
+
+/* Responsividade - Tablet (640px) */
+@media (min-width: 640px) {
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .search-actions {
+        flex-direction: row;
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .action-buttons {
+        flex-direction: row;
+    }
+
+    .action-button {
+        width: auto;
+    }
+
+    .campaigns-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsividade - Desktop (1024px) */
+@media (min-width: 1024px) {
+    .main-content {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .campaigns-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .modal-content {
+        max-width: 600px;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.3s ease-out;
 }
 
 /* Grid de Estatísticas */
@@ -82,59 +352,12 @@ body {
     color: var(--text-light);
 }
 
-/* Barra de Pesquisa */
-.search-bar {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 1rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-md);
-    background: var(--background);
-    font-size: 0.875rem;
-    transition: all 0.2s;
-}
-
-.search-input:focus {
-    outline: none;
-    background: white;
-    box-shadow: 0 0 0 2px var(--primary);
-}
-
-.search-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
 /* Cards de Clientes */
 .clients-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
-}
-
-.cliente-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.cliente-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cliente-info {
@@ -165,13 +388,13 @@ body {
 }
 
 .status-ativo {
-    background-color: #e6f7e6;
-    color: #2e7d32;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
 }
 
 .status-inativo {
-    background-color: #ffebee;
-    color: #c62828;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error);
 }
 
 .cliente-acoes {
@@ -181,7 +404,7 @@ body {
 }
 
 .btn-editar {
-    background-color: #6366F1;
+    background-color: var(--primary);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
@@ -193,7 +416,7 @@ body {
 }
 
 .btn-excluir {
-    background-color: #EF4444;
+    background-color: var(--error);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
@@ -805,4 +1028,54 @@ body {
 /* Ajustes para o conteúdo existente */
 .search-bar {
     margin-bottom: 2rem;
+}
+
+/* Estilos específicos para o modal de cliente */
+#addCouponTab .selected {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--primary);
+}
+
+#addCouponTab .selected .material-icons {
+    color: var(--primary);
+}
+
+/* Estilos para o modal de navegação */
+#navigationModal.active {
+    display: flex;
+}
+
+#clientModal.active {
+    display: flex;
+}
+
+/* Estilos para os cards de cliente */
+.cliente-card {
+    transition: all 0.2s;
+}
+
+.cliente-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Estilos para os botões de ação */
+.btn-editar {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-excluir {
+    background-color: var(--error);
+    color: white;
+}
+
+/* Estilos para os status */
+.status-ativo {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.status-inativo {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error);
 } 

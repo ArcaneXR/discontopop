@@ -1,21 +1,288 @@
 :root {
-    --primary: #6366F1;
-    --primary-hover: #4F46E5;
-    --secondary: #8B5CF6;
-    --background: #F8FAFC;
-    --text: #1E293B;
-    --text-light: #64748B;
-    --success: #10B981;
-    --warning: #F59E0B;
-    --error: #EF4444;
+    /* Nova paleta de cores mais sóbria */
+    --primary: #2C3E50;
+    --primary-hover: #34495E;
+    --secondary: #95A5A6;
+    --background: #F5F6FA;
+    --text: #2C3E50;
+    --text-light: #7F8C8D;
+    --success: #27AE60;
+    --warning: #F39C12;
+    --error: #E74C3C;
     --border: #E2E8F0;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Sombras suaves */
+    --shadow-sm: 0 2px 4px rgba(44, 62, 80, 0.05);
+    --shadow-md: 0 4px 6px rgba(44, 62, 80, 0.1);
+    
+    /* Border Radius */
     --radius-sm: 0.375rem;
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --radius-xl: 1rem;
-    --radius-full: 9999px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+/* Customização do Bootstrap */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-light {
+    background-color: #fff;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.btn-light:hover {
+    background-color: var(--background);
+    border-color: var(--border);
+    color: var(--primary);
+}
+
+.navbar {
+    background-color: #fff !important;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand {
+    color: var(--primary) !important;
+    font-weight: 600;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Status Badges */
+.badge.bg-success {
+    background-color: rgba(39, 174, 96, 0.1) !important;
+    color: var(--success);
+}
+
+.badge.bg-warning {
+    background-color: rgba(243, 156, 18, 0.1) !important;
+    color: var(--warning);
+}
+
+.badge.bg-danger {
+    background-color: rgba(231, 76, 60, 0.1) !important;
+    color: var(--error);
+}
+
+/* Text Colors */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-muted {
+    color: var(--text-light) !important;
+}
+
+/* Input Groups */
+.input-group-text {
+    background-color: #fff;
+    border-color: var(--border);
+    color: var(--text-light);
+}
+
+.form-control {
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+/* Cliente Card */
+.cliente-card {
+    background: #fff;
+}
+
+.cliente-nome {
+    color: var(--text);
+}
+
+.cliente-detalhes {
+    color: var(--text-light);
+}
+
+.status-ativo {
+    background-color: rgba(39, 174, 96, 0.1);
+    color: var(--success);
+}
+
+.status-inativo {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--error);
+}
+
+/* Stats Cards */
+.display-4 {
+    color: var(--primary);
+}
+
+/* Toast */
+.toast {
+    background-color: #fff;
+    border: none;
+    box-shadow: var(--shadow-md);
+}
+
+.toast-header {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+/* Buttons with icons */
+.btn i {
+    opacity: 0.8;
+}
+
+/* Hover effects */
+.btn:hover i {
+    opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Header e navegação */
+.header {
+    background: var(--secondary-dark);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-item {
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+    background: var(--gradient-primary);
+}
+
+/* Grid e Layout */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Animações e efeitos */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background: rgba(45, 156, 219, 0.2);
+    color: var(--accent-blue);
+}
+
+.status-pending {
+    background: rgba(255, 77, 143, 0.2);
+    color: var(--accent-pink);
+}
+
+/* Avatar groups */
+.avatar-group {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-dark);
+    margin-left: -8px;
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+    transform: translateY(-4px);
+}
+
+/* Progress bars */
+.progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+/* Glass effect cards */
+.glass-card {
+    background: rgba(26, 29, 38, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
 }
 
 /* Estilos Base */
@@ -93,15 +360,6 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-.search-input {
-    width: 100%;
-    max-width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    margin-bottom: 1rem;
-}
-
 .search-actions {
     display: flex;
     flex-direction: column;
@@ -128,6 +386,7 @@ body {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
+    height: 100%;
 }
 
 .cliente-card:hover {
@@ -385,16 +644,6 @@ body {
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
-}
-
-.status-ativo {
-    background-color: rgba(16, 185, 129, 0.1);
-    color: var(--success);
-}
-
-.status-inativo {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: var(--error);
 }
 
 .cliente-acoes {
@@ -1078,4 +1327,180 @@ body {
 .status-inativo {
     background-color: rgba(239, 68, 68, 0.1);
     color: var(--error);
+}
+
+/* Customização do Bootstrap */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-light {
+    background-color: white;
+    border-color: var(--border);
+}
+
+.btn-light:hover {
+    background-color: var(--background);
+    border-color: var(--border);
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.btn-icon:hover {
+    background-color: var(--background);
+}
+
+/* Cards */
+.card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Input Groups */
+.input-group-text {
+    border-color: var(--border);
+}
+
+.form-control {
+    border-color: var(--border);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 1em;
+    font-weight: 500;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Cliente Card */
+.cliente-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.cliente-info {
+    margin-bottom: 1rem;
+}
+
+.cliente-nome {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cliente-detalhes {
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.cliente-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-ativo {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.status-inativo {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Navbar */
+.navbar {
+    padding: 1rem;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Stats Cards */
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Campaign Cards */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.875rem;
+}
+
+/* Icons */
+.bx {
+    font-size: 1.25rem;
+}
+
+/* Wrapper */
+.wrapper {
+    min-height: 100vh;
+    background-color: var(--background);
 } 
